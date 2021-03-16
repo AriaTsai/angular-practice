@@ -8,9 +8,9 @@ describe('ProductAlertsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductAlertsComponent ]
+      declarations: [ProductAlertsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
