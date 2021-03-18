@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root' //註冊
 })
 export class CartService {
-  
+
   items = [];
 
   constructor(
