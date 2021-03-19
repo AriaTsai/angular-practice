@@ -1,0 +1,16 @@
+<div *ngFor="let product of products; let productId = index">
+    <h3>
+        <a [title]="product.name+' Detail'" [routerLink]="['/product', productId]">
+            {{ product.name }}
+        </a>
+    </h3>
+    <h4>{{ product.price | currency }}</h4>
+    <p>{{ product.description }}</p>
+    <button (click)="share()">Share</button>
+
+    <app-product-alert
+        *ngIf="product.price>700"
+        [product]="product"
+        (msgEvent)="notify($event)">
+    </app-product-alert>
+</div>

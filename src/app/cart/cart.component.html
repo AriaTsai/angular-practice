@@ -1,0 +1,61 @@
+<div *ngIf="cartList == null || cartList.length==0">
+    Cart is Empty
+</div>
+
+
+<div class="cart-item" *ngFor="let item of cartList; let idx = index">
+    <span>
+        {{ item.name }}
+    </span>
+    <span>{{ item.price | currency }}</span>
+    <button (click)="deleteItem(idx)">Delete</button>
+</div>
+
+
+
+<!-- <form [formGroup]="information" (ngSubmit)="submit()"> -->
+<form [formGroup]="information">
+
+    <!-- <label for="name">Name</label>
+        <input id="name" type="text" formControlName="name">
+        <p>
+            <button>Submit</button>
+        </p> -->
+
+
+    <div formGroupName="info">
+
+        <div>
+            <label for="name">Name</label>
+            <input type="text" formControlName="name" [class]="{hasError: information.get('info.name').errors}">
+        </div>
+        <!-- <div>
+            <label for="age">Age</label>
+            <input type="text" formControlName="age">
+        </div>
+        <div>
+            <select name="" id="" formControlName="gender" class="form-control">
+                <option value="man">man</option>
+                <option value="women">women</option>
+            </select>
+        </div> -->
+    </div>
+
+    <div formGroupName="contaction">
+
+
+    </div>
+
+
+
+    <button (click)="submit()">Submit</button>
+    <!-- <button (click)="submit()" [disabled]="!information.valid">Submit</button> -->
+    <span class="warning" *ngIf="showMsg">Please Check Again</span>
+
+</form>
+
+<!--
+    <label for="address">Address</label>
+    <input id="address" type="text" [formControl]="example">
+    {{ example.value }}
+-->

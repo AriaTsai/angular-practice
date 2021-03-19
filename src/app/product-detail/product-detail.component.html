@@ -1,0 +1,8 @@
+<div>
+    <h2>{{ productDetail.name }}</h2>
+    <h4>{{ productDetail.price | currency }}</h4>
+    <p>{{ productDetail.description }}</p>
+</div>
+<p>
+    <button (click)="addCart(productDetail)">Buy</button>
+</p>

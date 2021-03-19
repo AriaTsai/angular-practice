@@ -1,0 +1,11 @@
+.hasError {
+    border-color: red;
+}
+
+.warning {
+    color: red;
+}
+
+span {
+    padding: 16px;
+}
