@@ -10,6 +10,8 @@ import { products } from '../products';
 export class ProductListComponent {
   products = products;
 
+  test: string;
+
   share() {
     window.alert('The product has been shared!');
   }
@@ -17,5 +19,12 @@ export class ProductListComponent {
   onNotify() {
     window.alert('You will be notified when the product goes on sale');
   }
-  
+
+  toCheck(input1: any, input2: any, input3: any, alert: any) {
+    console.log(input1);
+    console.log(input2);
+    console.log(input3);
+    console.log(alert);
+  }
+
 }

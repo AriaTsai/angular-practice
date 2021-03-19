@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
+
 @Injectable({ //提供服務
   providedIn: 'root' //註冊
 })

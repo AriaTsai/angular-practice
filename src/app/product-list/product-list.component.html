@@ -20,3 +20,13 @@
     </app-product-alerts>
 
 </div>
+
+<div style="margin-top:10px">
+    <input style="margin-right:10px" #input1 />
+    <input style="margin-right:10px" #input2 [(ngModel)]="test" />
+    <input style="margin-right:10px" #input3="ngModel" [(ngModel)]="test" />
+    <app-product-alerts #alert></app-product-alerts>
+    <div>
+        <button (click)="toCheck(input1,input2,input3,alert)">ToCheck</button>
+    </div>
+</div>

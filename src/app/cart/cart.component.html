@@ -7,14 +7,92 @@
     <span>{{ item.price | currency }}</span>
     <button (click)="removeItem(idx)">Delete</button>
 </div>
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+<div [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
     <div>
+        <!-- [class.test]="true" [class.test2]="true" -->
+        <!-- [class]="{test:true,test2:true}" -->
         <label>Name</label>
-        <input type="text" formControlName="name">
+        <!-- <input type="text" formControlName="name" [ngClass]="{'test':true,'test2':true,'test3':true}"> -->
+        <!-- <input type="text" formControlName="name" [ngClass]=" {hasError:checkoutForm.get('name').errors !=null} "> -->
+        <input type="text" formControlName="name"
+            [ngClass]=" {'hasError':checkoutForm.get('name').errors !=null&&checkoutForm.get('name').touched } ">
+        <div *ngIf="checkoutForm.get('name').errors !=null&&checkoutForm.get('name').touched"> has error</div>
     </div>
     <div>
         <label>Address</label>
         <input type="text" formControlName="address">
     </div>
+
+    <!-- Include Group -->
+    <!-- <div formGroupName='connection'>
+        <div>
+            <label>Phone</label>
+            <input type="text" formControlName="phone">
+        </div>
+        <div>
+            <label>CellPhone</label>
+            <input type="text" formControlName="cellPhone"
+                [ngClass]="{hasError:checkoutForm.get('connection.cellPhone').errors !=null&&checkoutForm.get('connection.cellPhone').touched }">
+        </div>
+    </div> -->
+
+    <!-- Include Array -->
+    <!-- <div formGroupName='connection'>
+        <div>
+            <label>Phone</label>
+            <input type=" text" formControlName="phone">
+        </div>
+        <div formArrayName='cellPhone'>
+            <label>CellPhone</label>
+            <div *ngFor="let cellPhoneGroup of $any(checkoutForm.get('connection.cellPhone')).controls">
+                <div [formGroup]="cellPhoneGroup">
+                    <div>
+                        <label>Number</label>
+                        <input type="text" formControlName="number"
+                            [ngClass]="{hasError:cellPhoneGroup.get('number').errors !=null}">
+                    </div>
+                    <div>
+                        <label>User</label>
+                        <input type="text" formControlName="user"
+                            [ngClass]="{hasError:cellPhoneGroup.get('user').errors !=null}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- Self -->
+    <!-- <div>
+        <label>Name</label>
+        <input type="text" [formControl]="nameControl" [ngClass]="{hasError:nameControl.errors !=null}">
+    </div>
+    <div>
+        <label>Address</label>
+        <input type=" text" [formControl]="addressControl">
+    </div> -->
+
     <button>Purchase</button>
+</div>
+
+<div>
+    <div>
+        FormValid:{{checkoutForm.valid}}
+    </div>
+</div>
+
+
+<form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+    <label for="name">Name</label>
+    <input type="text" required ngModel name="name" #nameControl="ngModel" readonly>
+    <div [hidden]="nameControl.valid || nameControl.pristine" class="alert alert-danger">
+        Name is required
+    </div>
+
+    <label for="name">Address</label>
+    <input type="text" required ngModel name="addres" #addressControl="ngModel">
+    <div [hidden]="addressControl.valid || addressControl.pristine" class="alert alert-danger">
+        Address is required
+    </div>
+    <button type="button" (click)="toCheck(userForm,nameControl,addressControl)"> To check</button>
 </form>
