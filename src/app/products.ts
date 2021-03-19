@@ -1,10 +1,10 @@
-interface Iproduct {
+export interface IProduct {
   name: string,
   price: number,
   description: string
 }
 
-export const products: Iproduct[] = [
+export const products: IProduct[] = [
   {
     name: 'Phone XL',
     price: 799,

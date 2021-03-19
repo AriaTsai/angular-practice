@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+import { IProduct } from './../products';
+
 
 @Component({
   selector: 'app-product-alerts',
@@ -8,7 +10,7 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ['./product-alerts.component.css']
 })
 export class ProductAlertsComponent implements OnInit {
-  @Input() product;
+  @Input() product: IProduct;
   @Output() notify = new EventEmitter();
   constructor() { }
 
