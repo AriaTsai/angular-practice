@@ -1,10 +1,14 @@
 <div class="title-group">
-    <h2>Product List</h2>
+    <h2>Products</h2>
+    <div>
+        <label for=""> Search Product</label>
+        <input type="text" (input)="searchInput($event.target.value)">
+    </div>
 </div>
 
 <div class="items-group">
 
-    <div *ngFor="let product of products; index as productId" class="item">
+    <div *ngFor="let product of filterProducts; index as productId" class="item">
 
         <h3>
             <a [title]="product.name +'details'" [routerLink]="['/product' , productId]">
