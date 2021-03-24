@@ -2,19 +2,129 @@
 <p>
     <a routerLink="/shipping">Shipping Price</a>
 </p>
+
 <div class="cart-item" *ngFor="let item of cartList; index as idx">
     <span>{{ item.name }}</span>
     <span>{{ item.price | currency }}</span>
-    <button (click)="removeItem(idx)">Delete</button>
+    <button (click)="removeItem(idx)">Remove</button>
 </div>
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
-    <div>
-        <label>Name</label>
-        <input type="text" formControlName="name">
+
+<!-- <div *ngIf="cartList.length !==0 ; else elseBlock"> -->
+<div>
+    <h2>Your Contact Information</h2>
+    <div [formGroup]="checkoutForm" class="form-group">
+        <div class="form-group form-line">
+            <div class="form-row">
+
+                <div class="col">
+                    <label>Name</label>
+                    <input type="text" formControlName="name"
+                        [class]="{ inputError: checkoutForm.get('name').errors !== null && checkoutForm.get('name').touched }">
+
+                    <div *ngIf="checkoutForm.get('name').errors !== null && checkoutForm.get('name').touched">
+
+                        <div class="col error" *ngIf="checkoutForm.get('name').errors['maxlength']
+                        && checkoutForm.get('name').errors['maxlength'] !== null
+                        && !checkoutForm.get('name').errors['space']">
+                            不得大於5個字</div>
+
+                        <div class="col error" *ngIf="checkoutForm.get('name').errors['required']
+                        && checkoutForm.get('name').errors['required'] !== null">
+                            必填欄位</div>
+
+                        <div class="col error" *ngIf="checkoutForm.get('name').errors['space']
+                        && checkoutForm.get('name').errors['space'] !== null
+                        && !checkoutForm.get('name').errors['required']">
+                            輸入不得為空</div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <label>Address</label>
+                    <input type="text" formControlName="address"
+                        [class]="{ inputError: checkoutForm.get('address').errors !== null && checkoutForm.get('address').touched }">
+
+                    <div *ngIf="checkoutForm.get('address').errors !== null && checkoutForm.get('address').touched">
+
+                        <div class="col error" *ngIf="checkoutForm.get('address').errors['maxlength']
+                        && checkoutForm.get('address').errors['maxlength'] !== null
+                        && !checkoutForm.get('address').errors['space']">
+                            不得大於50個字</div>
+
+                        <div class="col error" *ngIf="checkoutForm.get('address').errors['required']
+                        && checkoutForm.get('address').errors['required'] !== null">
+                            必填欄位</div>
+
+                        <div class="col error" *ngIf="checkoutForm.get('address').errors['space']
+                        && checkoutForm.get('address').errors['space'] !== null
+                        && !checkoutForm.get('address').errors['required']">
+                            輸入不得為空</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div formArrayName="contaction" class="form-group form-line">
+
+            <div *ngFor="let contact of contactionAry.controls; let idx = index">
+                <div [formGroup]="contact" class="form-row">
+
+                    <div class="col">
+                        <label>Type</label>
+                        <select formControlName="type">
+                            <option value="Home">Home</option>
+                            <option value="Mobile">Mobile</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label>Numbers</label>
+                        <input type="text" formControlName="numbers"
+                            [class]="{ inputError: contact.get('numbers').errors !== null && contact.get('numbers').touched }">
+
+                        <div *ngIf="contact.get('numbers').errors !== null
+                        && checkoutForm.get(['contaction',idx]).get('numbers').touched">
+
+                            <div class="col error" *ngIf="contact.get('numbers').errors['maxlength']
+                            && contact.get('numbers').errors['maxlength'] !== null">
+                                不得大於10個字</div>
+
+                            <div class="col error" *ngIf="contact.get('numbers').errors['required']
+                            && contact.get('numbers').errors['required'] !== null">
+                                必填欄位</div>
+
+                            <div class="col error" *ngIf="contact.get('numbers').errors['space']
+                            && contact.get('numbers').errors['space'] !== null
+                            && !contact.get('numbers').errors['required']">
+                                輸入不得為空</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col">
+                        <div class="btn">
+                            <button (click)="removeNumbers(idx)">delete</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-row">
+                <button (click)="addNumbers()">add</button>
+            </div>
+
+        </div>
+
+        <p>
+            <button (click)="onSubmit(checkoutForm)">Purchase</button>
+        </p>
+
     </div>
-    <div>
-        <label>Address</label>
-        <input type="text" formControlName="address">
-    </div>
-    <button>Purchase</button>
-</form>
+</div>
+
+<!-- <ng-template #elseBlock>
+    <div>Cart Is Empty</div>
+</ng-template> -->
