@@ -13,11 +13,10 @@ export class ProductsService {
   productList: IProduct[] = []
 
   constructor() {
-    this.productList = this.generateFakeData(20);
+    this.productList = this.generateFakeData(50);
   }
 
   private generateFakeData(nums: number): IProduct[] {
-
 
     // name = productName + size +  + color
     let productName = ['T-shirt', 'Skirt', 'Pants', 'Vest', 'Shoes', 'Glass', 'Jeans']
@@ -41,7 +40,7 @@ export class ProductsService {
     //console.log(nameList)
 
     // ==product==
-    let newList = nameList.splice(0, realCount).map(item => {
+    let newList = nameList.splice(0, realCount).map((item) => {
       return {
         name: item,
         price: (Math.floor(Math.random() * 10) + 1) * 1000,
