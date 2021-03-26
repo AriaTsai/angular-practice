@@ -9,8 +9,7 @@
     <button (click)="removeItem(idx)">Remove</button>
 </div>
 
-<!-- <div *ngIf="cartList.length !==0 ; else elseBlock"> -->
-<div>
+<div *ngIf="cartList.length !==0 ; else elseBlock">
     <h2>Your Contact Information</h2>
     <div [formGroup]="checkoutForm" class="form-group">
         <div class="form-group form-line">
@@ -125,6 +124,6 @@
     </div>
 </div>
 
-<!-- <ng-template #elseBlock>
+<ng-template #elseBlock>
     <div>Cart Is Empty</div>
-</ng-template> -->
+</ng-template>

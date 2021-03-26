@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder, FormGroup, Validators, ValidatorFn, FormControl, FormArray, AbstractControl
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { trim } from 'lodash';
 
 //service
 import { CartService } from '../cart.service';
+import { OrdersService } from '../orders.service';
+
 
 
 @Component({
@@ -27,7 +30,9 @@ export class CartComponent implements OnInit {
 
   constructor(
     private CartService: CartService,
+    private OrdersService: OrdersService,
     private FormBuilder: FormBuilder,
+    private router: Router,
   ) {
 
     this.checkoutForm = new FormGroup({
@@ -48,10 +53,8 @@ export class CartComponent implements OnInit {
 
   forbiddenSpaceValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      if (control.dirty) {
-        const forbidden = !trim(control.value)
+        const forbidden = trim(control.value) == ''
         return forbidden ? { space: true } : null
-      }
     };
   }
 
@@ -80,10 +83,14 @@ export class CartComponent implements OnInit {
     if (!checkoutForm.valid) {
       console.warn('submit failure')
     } else {
+      checkoutForm.value['cartList'] = this.cartList
+      checkoutForm.value['dateTime'] = new Date()
+
       console.log(checkoutForm.value)
-      //this.CartService.clearCart();
-      //this.checkoutForm.reset();
-      //this.router.navigate(['/'])
+      this.OrdersService.addOrders(checkoutForm.value)
+      this.CartService.clearCart();
+      this.checkoutForm.reset();
+      this.router.navigate(['/'])
     }
   }
 

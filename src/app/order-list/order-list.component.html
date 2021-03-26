@@ -1,0 +1,47 @@
+<h1>Order List</h1>
+
+
+<div class="container" *ngIf="orderList.length > 0; else elseBlock">
+    <table>
+
+        <thead>
+            <tr>
+                <th> / </th>
+                <th *ngFor="let title of objectKeys(orderList[0])">{{ title | uppercase }}</th>
+            </tr>
+            <!-- <tr>
+                <th *ngFor="let title of orderList | keyvalue">{{title.key}}</th>
+            </tr> -->
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let tdata of orderList; index as index">
+                <th>{{ index + 1 }}</th>
+                <td>{{ tdata.name }}</td>
+                <td>{{ tdata.address }}</td>
+                <td>
+                    <ul>
+                        <li *ngFor="let tcontact of tdata.contaction" [class.highlight]="true">
+                            {{ tcontact.type }}：{{ tcontact.numbers }}
+                        </li>
+                    </ul>
+                </td>
+
+                <td>
+                    <div *ngFor="let titem of tdata.cartList" class="cart-item">
+                        <span>{{ titem.name }}</span>
+                        <span>{{ titem.price | currency }}</span>
+                    </div>
+                </td>
+
+                <td>
+                    <span>{{ tdata.dateTime | date:'yyyy/MM/dd:HH:mm:ss' }}</span>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+</div>
+
+<ng-template #elseBlock>empty</ng-template>

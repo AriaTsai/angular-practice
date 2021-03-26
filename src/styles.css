@@ -21,6 +21,10 @@ router-outlet + *  {
   padding: 0 16px;
 }
 
+app-order-list {
+  width: 100%;
+}
+
 /* Text */
 
 h1 {
