@@ -5,6 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedMaterialModule } from './shared-material/shared-material.module';
+
 // component
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
@@ -27,7 +30,9 @@ import { OrderListComponent } from './order-list/order-list.component';
       { path: 'cart', component: CartComponent },
       { path: 'shipping', component: ShippingComponent },
       { path: 'orders', component: OrderListComponent },
-    ])
+    ]),
+    SharedMaterialModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
