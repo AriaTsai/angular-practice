@@ -16,7 +16,7 @@ export class ProductListComponent {
   constructor(
     private ProductsService: ProductsService,
   ) {
-    this.products = this.filterProducts = this.ProductsService.productList
+    this.products = this.filterProducts = this.ProductsService.productList;
   }
 
   share() {
@@ -34,7 +34,7 @@ export class ProductListComponent {
   }
   searchProduct(input: string) {
     return filter(this.products, (item: IProduct) => {
-      return includes(toLower(item.name), toLower(input))
+      return includes(toLower(item.name), toLower(input));
     })
   }
 }

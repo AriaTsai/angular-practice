@@ -21,12 +21,12 @@ export class CartComponent implements OnInit {
   title: string = '';
   checkoutForm: FormGroup;
   get cartList() {
-    return this.CartService.getItems()
-  }
+    return this.CartService.getItems();
+  };
 
   get contactionAry() {
-    return this.checkoutForm.get('contaction') as FormArray
-  }
+    return this.checkoutForm.get('contaction') as FormArray;
+  };
 
   constructor(
     private CartService: CartService,
@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
           numbers: new FormControl(null, [Validators.required, Validators.maxLength(10), this.forbiddenSpaceValidator()]),
         })
       ])
-    })
+    });
 
   }
 
@@ -53,14 +53,14 @@ export class CartComponent implements OnInit {
 
   forbiddenSpaceValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-        const forbidden = trim(control.value) == ''
-        return forbidden ? { space: true } : null
+        const forbidden = trim(control.value) == '';
+        return forbidden ? { space: true } : null;
     };
   }
 
   removeItem(idx: number) {
     if (confirm('確認刪除?')) {
-      this.CartService.removeItem(idx)
+      this.CartService.removeItem(idx);
     }
   }
 
@@ -70,27 +70,27 @@ export class CartComponent implements OnInit {
         type: new FormControl('Home', [Validators.required]),
         numbers: new FormControl(null, [Validators.required, Validators.maxLength(10), this.forbiddenSpaceValidator()]),
       })
-    )
+    );
   }
 
   removeNumbers(idx: number) {
     if (this.contactionAry.controls.length > 1) {
-      this.contactionAry.removeAt(idx)
+      this.contactionAry.removeAt(idx);
     }
   }
 
   onSubmit(checkoutForm: FormGroup) {
     if (!checkoutForm.valid) {
-      console.warn('submit failure')
+      console.warn('submit failure');
     } else {
-      checkoutForm.value['cartList'] = this.cartList
-      checkoutForm.value['dateTime'] = new Date()
+      checkoutForm.value['cartList'] = this.cartList;
+      checkoutForm.value['dateTime'] = new Date();
 
-      console.log(checkoutForm.value)
-      this.OrdersService.addOrders(checkoutForm.value)
+      console.log(checkoutForm.value);
+      this.OrdersService.addOrders(checkoutForm.value);
       this.CartService.clearCart();
       this.checkoutForm.reset();
-      this.router.navigate(['/'])
+      this.router.navigate(['/']);
     }
   }
 

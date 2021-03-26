@@ -24,11 +24,11 @@ export class OrdersService {
   constructor() {}
 
   addOrders(order: IOrder) {
-    this.orders.push(order)
+    this.orders.push(order);
   }
 
   getOrders() {
-    return this.orders
+    return this.orders;
   }
 
 }

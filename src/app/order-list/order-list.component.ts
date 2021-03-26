@@ -17,11 +17,11 @@ export class OrderListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getOrderList()
+    this.getOrderList();
   }
 
   getOrderList() {
-    this.orderList = this.ordersService.getOrders()
+    this.orderList = this.ordersService.getOrders();
   }
 
 }

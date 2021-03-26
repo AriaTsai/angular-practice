@@ -18,6 +18,6 @@ export class ProductAlertsComponent implements OnInit {
   }
 
   emit() {
-    this.notify.emit()
+    this.notify.emit();
   }
 }

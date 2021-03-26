@@ -13,7 +13,6 @@ export class ShippingComponent implements OnInit {
     private CartService: CartService,
   ) { }
   ngOnInit(): void {
-    console.log(this.CartService.shippingPrice())
-    this.shippingCosts = this.CartService.shippingPrice()
+    this.shippingCosts = this.CartService.shippingPrice();
   }
 }

@@ -27,7 +27,7 @@ export class CartService {
     return this.items;
   }
   removeItem(idx: number) {
-    this.items.splice(idx, 1)
+    this.items.splice(idx, 1);
   }
   clearCart() {
     this.items = [];
@@ -35,7 +35,7 @@ export class CartService {
   }
 
   shippingPrice() {
-    return this.http.get<IShipping>('/assets/shipping.json')
+    return this.http.get<IShipping>('/assets/shipping.json');
   }
 
 }

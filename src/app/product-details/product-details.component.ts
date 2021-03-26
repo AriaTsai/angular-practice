@@ -19,18 +19,18 @@ export class ProductDetailsComponent implements OnInit {
     private CartService: CartService,
     private ProductsService: ProductsService,
   ) {
-    this.productList = this.ProductsService.productList
+    this.productList = this.ProductsService.productList;
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.product = this.productList[+params.get('productId')]
+      this.product = this.productList[+params.get('productId')];
     });
   }
 
-  addToCart(product) {
-    this.CartService.addToCart(product)
-    window.alert('Your product has been added to the cart!')
+  addToCart(product: IProduct) {
+    this.CartService.addToCart(product);
+    window.alert('Your product has been added to the cart!');
   }
 
 
