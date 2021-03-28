@@ -4,6 +4,8 @@ import { ProductsService, IProduct } from './../products.service';
 
 import { includes, toLower, filter, trim } from 'lodash';
 
+//import { MediaObserver, MediaChange } from '@angular/flex-layout';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',

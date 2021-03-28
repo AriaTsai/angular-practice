@@ -13,7 +13,7 @@ export class ProductsService {
   productList: IProduct[] = [];
 
   constructor() {
-    this.productList = this.generateFakeData(50);
+    this.productList = this.generateFakeData(15);
   }
 
   private generateFakeData(nums: number): IProduct[] {

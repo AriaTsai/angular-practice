@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 /* Global Styles */
 
 * {
@@ -19,6 +21,7 @@ body {
 
 router-outlet + *  {
   padding: 0 16px;
+  width:100%;
 }
 
 app-order-list {
@@ -74,6 +77,7 @@ label {
 }
 
 /* Button */
+
 .button, button {
   display: inline-flex;
   align-items: center;
