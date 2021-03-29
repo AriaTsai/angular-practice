@@ -16,7 +16,7 @@ export class ProductsService {
     this.productList = this.generateFakeData(50);
   }
 
-  private generateFakeData(nums: number): IProduct[] {
+  generateFakeData(nums: number): IProduct[] {
 
     // name = productName + size +  + color
     let productName = ['T-shirt', 'Skirt', 'Pants', 'Vest', 'Shoes', 'Glass', 'Jeans'];

@@ -5,6 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedMaterialModule } from './shared-material/shared-material.module';
+import { FlexLayoutModule} from '@angular/flex-layout';
+
 // component
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
@@ -14,6 +18,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   imports: [
@@ -26,8 +31,12 @@ import { OrderListComponent } from './order-list/order-list.component';
       { path: 'product/:productId', component: ProductDetailsComponent },
       { path: 'cart', component: CartComponent },
       { path: 'shipping', component: ShippingComponent },
-      { path: 'orders', component: OrderListComponent },
-    ])
+      { path: 'order-list', component: OrderListComponent },
+      { path: 'orders', component: OrdersComponent },
+    ]),
+    SharedMaterialModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule
   ],
   declarations: [
     AppComponent,
@@ -38,6 +47,7 @@ import { OrderListComponent } from './order-list/order-list.component';
     CartComponent,
     ShippingComponent,
     OrderListComponent,
+    OrdersComponent,
   ],
   bootstrap: [AppComponent]
 })
