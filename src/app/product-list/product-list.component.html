@@ -6,9 +6,11 @@
     </div>
 </div>
 
-<div class="items-group">
 
-    <div *ngFor="let product of filterProducts; index as productId" class="item">
+<div fxLayout="row wrap" fxLayoutGap="20px">
+
+    <mat-card class="product-card" fxLayout="column" fxFlex="0 1 420px" fxLayoutAlign="space-between"
+        *ngFor="let product of filterProducts; index as productId">
 
         <h3>
             <a [title]="product.name +'details'" [routerLink]="['/product' , productId]">
@@ -16,18 +18,18 @@
             </a>
         </h3>
 
-        <div class="content">
+        <div>
             <p *ngIf="product.description">
                 Description: {{ product.description }}
             </p>
         </div>
 
-        <div class="button-group">
-            <button (click)="share()" class="btn">Share</button>
-            <app-product-alerts [product]="product" (notify)="onNotify()" *ngIf="product.price > 5000" class="btn">
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center">
+            <button mat-stroked-button color="primary" (click)="share(product.name)">Share</button>
+            <app-product-alerts [product]="product" (notify)="onNotify($event)" *ngIf="product.price > 5000">
             </app-product-alerts>
         </div>
 
-    </div>
+    </mat-card>
 
 </div>

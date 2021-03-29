@@ -1,4 +1,8 @@
 /* Global Styles */
+/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
+
 
 * {
   font-family: 'Roboto', Arial, sans-serif;
@@ -21,7 +25,7 @@ router-outlet + *  {
   padding: 0 16px;
 }
 
-app-order-list {
+app-order-list, app-orders {
   width: 100%;
 }
 

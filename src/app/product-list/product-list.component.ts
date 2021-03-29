@@ -19,12 +19,12 @@ export class ProductListComponent {
     this.products = this.filterProducts = this.ProductsService.productList;
   }
 
-  share() {
-    window.alert('The product has been shared!');
+  share(name: string) {
+    window.alert(`${name} has been shared!`);
   }
 
-  onNotify() {
-    window.alert('You will be notified when the product goes on sale');
+  onNotify(product: string) {
+    window.alert(`You will be notified when ${product} goes on sale`);
   }
 
   searchInput(input: string) {

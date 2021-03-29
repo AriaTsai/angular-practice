@@ -41,3 +41,8 @@
 .btn {
     margin: 0 5px;
 }
+
+.product-card {
+    margin-bottom: 20px;
+    min-height: 150px;
+}
